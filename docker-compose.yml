@@ -12,9 +12,7 @@ services:
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
-      - POSTGRES_USER_A=core-app
-      - POSTGRES_PASSWORD_A=1234
-      - POSTGRES_DB_A=core-app
+      - POSTGRES_DB=postgres
 
     volumes:
       - ./db:/docker-entrypoint-initdb.d/
@@ -25,7 +23,8 @@ services:
     build: .
     image: core-app:latest
     container_name: core-app
-    command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
     volumes:
       - .:/code
     ports:
