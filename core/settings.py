@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-j6q=iu@f1p=tu9!(l!m@f86ii^ftppbyn31+@j!g9a2nku7%u*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -80,6 +81,21 @@ DATABASES = {
     }
 }
 
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'core-app',
+#         'USER': 'core-app',
+#         'PASSWORD': '1234',
+#         'HOST': 'localhost',
+#         'PORT': 5432,
+#         'ATOMIC_REQUESTS': True,
+#     }
+
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
