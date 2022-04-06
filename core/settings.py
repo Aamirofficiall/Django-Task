@@ -83,18 +83,16 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
-
+import os 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'root',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'NAME': "postgres",
+        'USER': "postgres",
+        'PASSWORD': "postgres",
         'HOST': 'db',
         'PORT': 5432,
-        'ATOMIC_REQUESTS': True,
     }
-
 }
 
 
