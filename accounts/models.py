@@ -3,9 +3,21 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from .managers import UserManager
 
+
+class Role(models.Model):
+    CHOICES  =  (
+        ("Director", "Director"),
+        ("Manager", "Manager"),
+        ("Viewer", "Viewer"),
+    )
+    name =  models.CharField(max_length=100,choices=CHOICES)
+    def __str__(self):   
+        return self.name
+    
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
+    role  = models.ForeignKey(Role,on_delete=models.CASCADE,blank=True,null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -14,4 +26,6 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+
+
     
