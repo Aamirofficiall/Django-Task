@@ -4,30 +4,12 @@
 
 <div class='container'>
     <h1>Home </h1>
-    {% if user.is_authenticated %}
-     <a href='{% url "logout" %}'>Logout</a>
-    {% endif %}
     <hr>
     {% if user.is_authenticated %}
-
-        {% if user.is_superuser  %}
-            <h2>Hi, Admin User</h2>          
-        {% else %}
-
-            {% if user.role.name == 'Director' %}
-                <h2>Hi  Director</h2>        
-            {% endif %}
-            {% if user.role.name == 'Manager' %}
-                <h2>Hi, Manager</h2> 
-            {% endif %}
-            {% if user.role.name == 'Viewer' %}
-                <h2>Hi, Viewer</h2> 
-            {% endif %}     
-
-        {% endif %}
-
+        <h2>Hi , {{role|title}}</h2>          
     {% else %}
         <h2>Login | <a href="{% url 'login' %}">login</a></h2>
     {% endif %}
 </div>
+
 {% endblock content %}
