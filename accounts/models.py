@@ -5,12 +5,7 @@ from .managers import UserManager
 from django.contrib.auth.models import PermissionsMixin
 
 class Role(models.Model):
-    CHOICES  =  (
-        ("Director", "Director"),
-        ("Manager", "Manager"),
-        ("Viewer", "Viewer"),
-    )
-    name =  models.CharField(max_length=100,choices=CHOICES)
+    name =  models.CharField(max_length=100)
     def __str__(self):   
         return self.name
     
@@ -31,8 +26,12 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
         return self.email
     
     def save(self, *args, **kwargs):
+        
+        # Create by default roles e.g. Director , Manager, Viewer
+        Role.objects.get_or_create(name='Director')
+        Role.objects.get_or_create(name='Manager')          
         role,flag = Role.objects.get_or_create(name='Viewer')
-        self.role = role
+        self.role = role      
         super(CustomUser, self).save(*args, **kwargs)
 
 
