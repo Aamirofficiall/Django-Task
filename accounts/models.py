@@ -25,11 +25,7 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     def __str__(self):
         return self.email
     
-    def save(self, *args, **kwargs):
-        
-        # Create by default roles e.g. Director , Manager, Viewer
-        Role.objects.get_or_create(name='Director')
-        Role.objects.get_or_create(name='Manager')          
+    def save(self, *args, **kwargs):       
         role,flag = Role.objects.get_or_create(name='Viewer')
         self.role = role      
         super(CustomUser, self).save(*args, **kwargs)

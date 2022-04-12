@@ -24,3 +24,7 @@ urlpatterns = [
 
 handler404 = "accounts.views.error_404"
 handler500 = "accounts.views.error_500"
+handler501 = "accounts.views.error_501"
+handler502 = "accounts.views.error_502"
+handler503 = "accounts.views.error_503"
+handler504 = "accounts.views.error_504"

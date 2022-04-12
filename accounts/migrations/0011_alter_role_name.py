@@ -2,7 +2,13 @@
 
 from django.db import migrations, models
 
-
+def populate_roles(apps, schema_editor):
+    names = ["Director", "Manager", "Viewer"]                               
+    Role = apps.get_model('accounts', 'Role')
+    for name in names:
+        obj = Role(name=name)
+        obj.save()
+        
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -15,4 +21,6 @@ class Migration(migrations.Migration):
             name='name',
             field=models.CharField(max_length=100),
         ),
+        migrations.RunPython(populate_roles),  #Just add this line
+
     ]

@@ -76,8 +76,20 @@ def home(request):
 
 
 def error_404(request, exception):
-    return render(request,'404.html')
+    return render(request,'errors/404.html')
 
 def error_500(request):
-    return render(request,'500.html')
+    return render(request,'errors/500.html')
     
+def error_501(request):
+    return render(request,'errors/501.html')
+    
+def error_502(request):
+    return render(request,'errors/502.html')
+  
+def error_503(request):
+    return render(request,'errors/503.html')
+
+def error_504(request):
+    return render(request,'errors/504.html')
+      
