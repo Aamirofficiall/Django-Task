@@ -6,9 +6,9 @@
     <h1>Home </h1>
     <hr>
     {% if user.is_authenticated %}
-        <h2>Hi , {{role|title}}</h2>          
+        <h2>Hello , {{role|title}}</h2>          
     {% else %}
-        <h2>Login | <a href="{% url 'login' %}">login</a></h2>
+         Click here to <a href="{% url 'login' %}">login</a>
     {% endif %}
 </div>
 

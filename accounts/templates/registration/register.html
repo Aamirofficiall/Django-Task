@@ -4,13 +4,44 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div>
-        <h1>Registeration</h1>
-        <hr>
-        <form method="POST" class="form-group">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button type="submit" class="btn btn-success">Register</button>
-        </form>
+
+{% load widget_tweaks %}
+
+
+<div>
+    <div class='row justify-content-center'>
+        <div class='card p-5 mt-5 col-md-6 col-sm-6 d-flex '>
+            <form method="POST">
+                {% csrf_token %}
+                <h1 class='text-center'>Register</h1>
+                {% for fields in form %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">{{fields.label}}</label>
+                        {{fields|add_class:'form-control'}}
+                        <div class='mt-3'>
+                            {% if fields.errors %}
+                                {% for error in fields.errors %}
+                                    <div class="text-danger ">
+                                        <span>{{error}}<span>
+                                    </div>       
+                                {% endfor %}
+                            {% endif %}
+                        </div>                        
+                    </div>              
+                
+
+                
+                {% endfor %}
+    
+                <div class='text-center'>
+                    <button type="submit" class="btn btn-success mt-4">Register</button>
+                </div>
+            </form>
+
+
+        </div>
     </div>
+</div>
+
+
 {% endblock %}

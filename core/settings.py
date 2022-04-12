@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'crispy_forms',
+    'widget_tweaks',
 
 ]
 
@@ -140,6 +141,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = ["accounts.backends.ExtendedUserModelBackend"]
-
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "accounts.backends.ExtendedUserModelBackend"
+]
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"  # new
